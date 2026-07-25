@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+<!-- ================= HERO CAROUSEL ================= -->
+
+<div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+    <ol class="carousel-indicators">
+        <li data-target="#heroCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#heroCarousel" data-slide-to="1"></li>
+        <li data-target="#heroCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+
+        <div class="carousel-item active">
+
+            <img src="{% static 'wp1.jpg' %}" class="d-block w-100 hero-img" alt="Luxury Car">
+
+            <div class="carousel-caption hero-caption">
+
+                <h1>Drive Your Dream Car</h1>
+
+                <p>Premium cars at affordable prices for every journey.</p>
+
+                <a href="/cars" class="btn btn-warning btn-lg px-4">
+                    Explore Cars
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Slide 2 -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'wp2.jpg' %}" class="d-block w-100 hero-img" alt="Sports Car">
+
+            <div class="carousel-caption hero-caption">
+
+                <h1>Luxury Meets Comfort</h1>
+
+                <p>Choose from economy to premium vehicles.</p>
+
+                <a href="/cars" class="btn btn-danger btn-lg px-4">
+                    Book Now
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Slide 3 -->
+
+        <div class="carousel-item">
+
+            <img src="{% static 'wp3.jpg' %}" class="d-block w-100 hero-img" alt="SUV">
+
+            <div class="carousel-caption hero-caption">
+
+                <h1>Your Journey Starts Here</h1>
+
+                <p>Safe, reliable and affordable rentals.</p>
+
+                <a href="/contact" class="btn btn-primary btn-lg px-4">
+                    Contact Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+
+<!-- ================= END HERO ================= -->
+
+<!-- ================= ABOUT ================= -->
+
+<section class="container py-5">
+
+    <h2 class="section-title">Welcome to BR Car Rentals</h2>
+
+    <p class="section-subtitle">
+        Experience premium car rental services with affordable prices,
+        comfortable rides and hassle-free booking.
+    </p>
+
+    <div class="row text-center mt-5">
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <i class="fas fa-car fa-3x text-warning mb-3"></i>
+
+                    <h4>50+</h4>
+
+                    <p>Premium Cars</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+
+                    <h4>1000+</h4>
+
+                    <p>Happy Customers</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <i class="fas fa-map-marker-alt fa-3x text-danger mb-3"></i>
+
+                    <h4>25+</h4>
+
+                    <p>Cities Covered</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <i class="fas fa-headset fa-3x text-success mb-3"></i>
+
+                    <h4>24×7</h4>
+
+                    <p>Customer Support</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="container py-5">
+
+    <h2 class="section-title">Why Choose Us</h2>
+
+    <p class="section-subtitle">
+        We provide reliable, affordable and premium car rental services.
+    </p>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100">
+
+                <img src="{% static 'car2.jpg' %}" class="card-img-top">
+
+                <div class="card-body">
+
+                    <h4 class="card-title">Affordable Prices</h4>
+
+                    <p class="card-text">
+                        Rent premium cars without spending a fortune.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100">
+
+                <img src="{% static 'car1.jpg' %}" class="card-img-top">
+
+                <div class="card-body">
+
+                    <h4 class="card-title">Premium Vehicles</h4>
+
+                    <p class="card-text">
+                        Choose from luxury, SUV and economy cars.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100">
+
+                <img src="{% static 'car3.webp' %}" class="card-img-top">
+
+                <div class="card-body">
+
+                    <h4 class="card-title">Safe Journey</h4>
+
+                    <p class="card-text">
+                        Every vehicle is inspected before every booking.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CALL TO ACTION ================= -->
+
+<section class="container py-5 text-center">
+
+    <div class="card bg-dark text-white p-5">
+
+        <h2>Ready for Your Next Journey?</h2>
+
+        <p class="mt-3">
+            Book your favourite vehicle today and travel comfortably.
+        </p>
+
+        {% if user.is_authenticated %}
+
+            <a href="/vehicles" class="btn btn-warning btn-lg mt-3">
+                View Vehicles
+            </a>
+
+        {% else %}
+
+            <a href="/signin" class="btn btn-warning btn-lg mt-3">
+                Login to Book
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock body %}

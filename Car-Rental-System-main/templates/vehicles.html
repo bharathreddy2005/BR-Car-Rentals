@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Vehicles{% endblock %}
+
+{% block body %}
+
+<!-- HERO -->
+
+<section class="bg-dark text-white text-center py-5">
+
+    <div class="container">
+
+        <h1 class="display-4 font-weight-bold">
+            Welcome {{ request.user }}
+        </h1>
+
+        <p class="lead mt-3">
+            Choose from our premium collection of rental cars.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- VEHICLES -->
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h2 class="section-title">
+            Available Vehicles
+        </h2>
+
+        <p class="section-subtitle">
+            Select your favourite vehicle and start your journey.
+        </p>
+
+    </div>
+
+    <div class="row">
+
+        {% for i in car %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card h-100 shadow">
+
+                <img src="/media/{{ i.image }}"
+                     class="card-img-top"
+                     alt="{{ i.car_name }}">
+
+                <div class="card-body">
+
+                    <h3 class="text-center">
+                        {{ i.car_name }}
+                    </h3>
+
+                    <p class="text-muted">
+                        {{ i.car_desc }}
+                    </p>
+
+                    <hr>
+
+                    <p>
+                        <strong>Price / Day :</strong>
+
+                        <span class="text-success font-weight-bold">
+                            ₹ {{ i.price }}
+                        </span>
+                    </p>
+
+                </div>
+
+                <div class="card-footer bg-white border-0">
+
+                    <a href="/bill/{{ i.id }}/"
+                      class="btn btn-warning btn-block">
+                        Rent Now
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+
+            <div class="alert alert-warning text-center">
+
+                No vehicles available.
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

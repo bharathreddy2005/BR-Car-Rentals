@@ -1,0 +1,104 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}Edit Car{% endblock %}
+
+{% block page_title %}
+Edit Car
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="form-group">
+
+<label>Car Name</label>
+
+<input
+type="text"
+class="form-control"
+name="car_name"
+value="{{ car.car_name }}"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Description</label>
+
+<textarea
+class="form-control"
+rows="4"
+name="car_desc"
+required>{{ car.car_desc }}</textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Price Per Day</label>
+
+<input
+type="number"
+class="form-control"
+name="price"
+value="{{ car.price }}"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Current Image</label>
+
+<br>
+
+<img
+src="{{ car.image.url }}"
+width="180"
+class="img-thumbnail mb-3">
+
+</div>
+
+<div class="form-group">
+
+<label>Change Image (Optional)</label>
+
+<input
+type="file"
+class="form-control"
+name="image">
+
+</div>
+
+<button class="btn btn-primary">
+
+Update Car
+
+</button>
+
+<a href="{% url 'admin_cars' %}"
+class="btn btn-secondary">
+
+Cancel
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

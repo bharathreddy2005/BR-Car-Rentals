@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-5">My Bookings</h2>
+
+    {% if bookings %}
+
+        <div class="row">
+
+            {% for booking in bookings %}
+
+            <div class="col-md-6 mb-4">
+
+                <div class="card shadow-lg">
+
+                    <div class="card-body">
+
+                        <h4 class="card-title text-primary">
+                            {{ booking.cars }}
+                        </h4>
+
+                        <hr>
+
+                        <p><strong>Booking ID:</strong> {{ booking.order_id }}</p>
+
+                        <p><strong>Pickup Date:</strong> {{ booking.date }}</p>
+
+                        <p><strong>Days:</strong> {{ booking.days_for_rent }}</p>
+
+                        <p><strong>From:</strong> {{ booking.loc_from }}</p>
+
+                        <p><strong>To:</strong> {{ booking.loc_to }}</p>
+
+                        <p><strong>Phone:</strong> {{ booking.phone }}</p>
+
+                        <p><strong>Status:</strong>
+                            <span class="badge badge-success">
+                                Booked
+                            </span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="text-center mt-5">
+
+            <img src="{% static 'empty_booking.jpg' %}" width="220">
+
+            <h4 class="mt-4">No bookings yet.</h4>
+
+            <a href="/vehicles" class="btn btn-primary mt-3">
+                Book Your First Car
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

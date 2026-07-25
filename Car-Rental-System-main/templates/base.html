@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %} | BR Car Rentals</title>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    {% block style %}{% endblock %}
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+
+    <div class="container">
+
+        <a class="navbar-brand font-weight-bold" href="/home">
+            <i class="fa-solid fa-car-side"></i>
+            BR Car Rentals
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="/my-bookings">My Bookings</a>
+                </li>
+
+                {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/vehicles">Cars</a>
+                </li>
+
+                <li class="nav-item">
+                    <span class="nav-link">
+                        <i class="fa-solid fa-user"></i>
+                        {{ user.username }}
+                    </span>
+                </li>
+
+                {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/">Dashboard</a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="btn btn-warning ml-2" href="/signout">
+                        Logout
+                    </a>
+                </li>
+
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="btn btn-outline-light mr-2" href="/signin">
+                        Login
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-warning" href="/signup">
+                        Register
+                    </a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ================= CONTENT ================= -->
+
+<div style="margin-top:80px;">
+
+{% block body %}
+
+{% endblock %}
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <h4>BR Car Rentals</h4>
+
+                <p>
+                    Premium car rental services at affordable prices.
+                    Safe, reliable and comfortable rides for every journey.
+                </p>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h5>Quick Links</h5>
+
+                <p><a href="/home">Home</a></p>
+                <p><a href="/about">About</a></p>
+                <p><a href="/vehicles">Cars</a></p>
+                <p><a href="/contact">Contact</a></p>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h5>Contact</h5>
+
+                <p>Email : info@brcarrentals.com</p>
+
+                <p>Phone : +91 9876543210</p>
+
+                <p>Open : 24 × 7</p>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+
+            © 2026 BR Car Rentals | College Project
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
