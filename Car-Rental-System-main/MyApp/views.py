@@ -17,50 +17,56 @@ def about(request):
 
 def register(request):
     if request.method == "POST":
-        name = request.POST['name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        password2 = request.POST['password2']
+        name = request.POST.get('name', '').strip()
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
+        password = request.POST.get('password', '')
+        password2 = request.POST.get('password2', '')
 
-        if User.objects.filter(username = username).first():
-            messages.error(request,"Username already taken")
+        if not username and email:
+            username = email.split('@')[0]
+
+        if not username or not email or not password:
+            messages.error(request, "Please fill in all required fields.")
             return redirect('register')
-        if User.objects.filter(email = email).first():
-            messages.error(request,"Email already taken")
+
+        if User.objects.filter(username__iexact=username).exists():
+            messages.error(request, "Username already taken")
+            return redirect('register')
+        if User.objects.filter(email__iexact=email).exists():
+            messages.error(request, "Email already taken")
             return redirect('register')
 
         if password != password2:
-            messages.error(request,"Passwords do not match")
+            messages.error(request, "Passwords do not match")
             return redirect('register')
 
         myuser = User(username=username, email=email, first_name=name)
         myuser.password = password
         myuser.save()
-        messages.success(request,"Your account has been successfully created!")
+        messages.success(request, "Your account has been successfully created! You can now log in.")
         return redirect('signin')
 
-
     else:
-        return render(request,'register.html')
-    
+        return render(request, 'register.html')
+
 
 def signin(request):
     if request.method == "POST":
-        loginusername = request.POST['loginusername']
-        loginpassword = request.POST['loginpassword']
+        loginusername = request.POST.get('loginusername', '').strip()
+        loginpassword = request.POST.get('loginpassword', '')
 
-        user = authenticate(username = loginusername,password = loginpassword)
+        user = authenticate(request, username=loginusername, password=loginpassword)
         if user is not None:
             login(request, user)
             # messages.success(request,"Successfully logged in!")
             return redirect('vehicles')
         else:
-            messages.error(request,"Invalid credentials")
+            messages.error(request, "Invalid credentials. Please check your username/email and password.")
             return redirect('signin')
 
     else:
-        return render(request,'login.html')
+        return render(request, 'login.html')
 
 def signout(request):
         logout(request)
@@ -152,7 +158,7 @@ def delete_booking(request, id):
 @user_passes_test(lambda u: u.is_staff, login_url='admin_login')
 def admin_users(request):
 
-    users = User.objects.filter(is_staff=False).order_by('id')
+    users = User.objects.filter(is_staff=False).order_by('-id')
 
     return render(
         request,
@@ -188,10 +194,11 @@ def admin_login(request):
 
     if request.method == "POST":
 
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '')
 
         user = authenticate(
+            request,
             username=username,
             password=password
         )
