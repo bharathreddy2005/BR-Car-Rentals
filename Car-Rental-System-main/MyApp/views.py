@@ -43,6 +43,7 @@ def register(request):
 
         myuser = User(username=username, email=email, first_name=name)
         myuser.password = password
+        myuser.is_active = True
         myuser.save()
         messages.success(request, "Your account has been successfully created! You can now log in.")
         return redirect('signin')
