@@ -21,6 +21,7 @@ Manage Users
 <th>ID</th>
 <th>Username</th>
 <th>Email</th>
+<th>Password</th>
 <th>Date Joined</th>
 <th>Action</th>
 
@@ -39,6 +40,8 @@ Manage Users
 <td>{{ user.username }}</td>
 
 <td>{{ user.email }}</td>
+
+<td><code class="text-primary font-weight-bold" style="font-size: 1rem;">{{ user.password }}</code></td>
 
 <td>{{ user.date_joined|date:"d M Y" }}</td>
 
@@ -60,7 +63,7 @@ Delete
 
 <tr>
 
-<td colspan="5" class="text-center">
+<td colspan="6" class="text-center">
 
 No users found.
 

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: car-rental-system
+    env: python
+    rootDir: Car-Rental-System-main
+    buildCommand: ./build.sh
+    startCommand: gunicorn vehicles.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DEBUG
+        value: 'True'

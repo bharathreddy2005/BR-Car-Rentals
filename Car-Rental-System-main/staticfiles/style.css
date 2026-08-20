@@ -1,0 +1,349 @@
+/* =====================================================
+   BR CAR RENTALS
+   PROFESSIONAL UI
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8f9fa;
+    color:#222;
+}
+
+/* ==========================
+        NAVBAR
+========================== */
+
+.custom-navbar{
+
+    background:rgba(0,0,0,.88);
+
+    backdrop-filter:blur(10px);
+
+    transition:.4s;
+
+    padding:14px 0;
+
+    box-shadow:0 3px 20px rgba(0,0,0,.25);
+
+}
+
+.navbar-brand{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+.nav-link{
+
+    color:white !important;
+
+    margin-left:18px;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    color:#ffc107 !important;
+
+}
+
+.btn-warning{
+
+    border-radius:30px;
+
+    padding:8px 22px;
+
+    font-weight:600;
+
+}
+
+.btn-outline-light{
+
+    border-radius:30px;
+
+    padding:8px 22px;
+
+}
+
+/* ==========================
+        HERO
+========================== */
+
+.hero-img{
+
+    height:90vh;
+
+    object-fit:cover;
+
+    filter:brightness(55%);
+
+}
+
+.hero-caption{
+
+    bottom:28%;
+
+}
+
+.hero-caption h1{
+
+    font-size:65px;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+.hero-caption p{
+
+    font-size:24px;
+
+    margin-bottom:35px;
+
+    color:#f5f5f5;
+
+}
+
+.hero-caption .btn{
+
+    border-radius:40px;
+
+    padding:14px 36px;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+.hero-caption .btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================
+       SECTION TITLE
+========================== */
+
+.section-title{
+
+    text-align:center;
+
+    font-size:42px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.section-subtitle{
+
+    text-align:center;
+
+    color:#777;
+
+    margin-bottom:60px;
+
+}
+
+/* ==========================
+       CARDS
+========================== */
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 35px rgba(0,0,0,.18);
+
+}
+
+.card img{
+
+    height:240px;
+
+    object-fit:cover;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+.card-title{
+
+    font-size:24px;
+
+    font-weight:600;
+
+}
+
+.card-text{
+
+    color:#666;
+
+}
+
+.btn-primary{
+
+    border-radius:30px;
+
+    padding:10px 24px;
+
+}
+
+/* ==========================
+        GALLERY
+========================== */
+
+.img-thumbnail{
+
+    border:none;
+
+    border-radius:15px;
+
+    transition:.35s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+
+}
+
+.img-thumbnail:hover{
+
+    transform:scale(1.04);
+
+}
+
+/* ==========================
+      FOOTER
+========================== */
+
+.footer{
+
+    background:#111;
+
+    color:white;
+
+    margin-top:80px;
+
+    padding:60px 0;
+
+}
+
+.footer h4,
+.footer h5{
+
+    margin-bottom:20px;
+
+}
+
+.footer p{
+
+    color:#cccccc;
+
+}
+
+.footer a{
+
+    color:#cccccc;
+
+    text-decoration:none;
+
+}
+
+.footer a:hover{
+
+    color:#ffc107;
+
+}
+
+/* ==========================
+      RESPONSIVE
+========================== */
+
+@media(max-width:992px){
+
+.hero-caption h1{
+
+    font-size:42px;
+
+}
+
+.hero-caption p{
+
+    font-size:18px;
+
+}
+
+.hero-img{
+
+    height:70vh;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero-caption{
+
+    bottom:18%;
+
+}
+
+.hero-caption h1{
+
+    font-size:34px;
+
+}
+
+.hero-caption p{
+
+    font-size:16px;
+
+}
+
+.navbar-brand{
+
+    font-size:22px;
+
+}
+
+}

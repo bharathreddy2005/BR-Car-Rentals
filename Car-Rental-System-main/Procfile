@@ -1,0 +1,1 @@
+web: gunicorn vehicles.wsgi:application
