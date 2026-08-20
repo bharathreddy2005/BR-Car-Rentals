@@ -13,7 +13,7 @@ def index(request):
 	return render(request,'index.html')
 
 def about(request):
-    return render(request,'about.html ')
+    return render(request, 'about.html')
 
 def register(request):
     if request.method == "POST":
@@ -79,7 +79,7 @@ def vehicles(request):
     cars = Car.objects.all()
     # print(cars)
     params = {'car':cars}
-    return render(request,'vehicles.html ',params)
+    return render(request, 'vehicles.html', params)
 
 @login_required
 def bill(request, id):
@@ -134,7 +134,7 @@ def contact(request):
 
         contact = Contact(name = contactname, email = contactemail, phone_number = contactnumber,message = contactmsg)
         contact.save()
-    return render(request,'contact.html ')
+    return render(request, 'contact.html')
 
 @login_required
 def my_bookings(request):
