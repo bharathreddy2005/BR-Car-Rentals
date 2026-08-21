@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from MyApp.models import Car
 
 class Command(BaseCommand):
-    help = 'Seeds admin user and initial car catalog if empty'
+    help = 'Seeds admin user, default customer users, and initial car catalog if empty'
 
     def handle(self, *args, **options):
         # Ensure media directory and car images exist
@@ -21,6 +21,7 @@ class Command(BaseCommand):
                         shutil.copy2(os.path.join(src_car_dir, file), dest_file)
                     except Exception:
                         pass
+
         # 1. Create or update admin user
         admin_user, created = User.objects.get_or_create(username='admin')
         admin_user.password = 'admin123'
@@ -33,7 +34,27 @@ class Command(BaseCommand):
         else:
             self.stdout.write(self.style.SUCCESS("Admin user 'admin' verified with password 'admin123'."))
 
-        # 2. Seed default cars if table is empty
+        # 2. Seed initial customer users
+        initial_users = [
+            {'username': 'Bharathsimha', 'email': 'bharathsimha@gmail.com', 'first_name': 'Bharath Simha', 'password': 'bharathsimha123'},
+            {'username': 'vikram', 'email': 'vikram@gmail.com', 'first_name': 'Vikram', 'password': 'vikram123'},
+            {'username': 'sabbu@1234', 'email': 'sabbuu@gmail.com', 'first_name': 'Sabbu', 'password': 'raaya@12'},
+            {'username': 'Bharath', 'email': 'br7716997@gmail.com', 'first_name': 'Bharath', 'password': 'pass123'},
+            {'username': 'John123', 'email': 'christy123@gmail.com', 'first_name': 'John', 'password': 'pass123'},
+            {'username': 'rahul', 'email': 'rahul@gmail.com', 'first_name': 'Rahul', 'password': 'pass123'},
+        ]
+        for u in initial_users:
+            usr, u_created = User.objects.get_or_create(username=u['username'])
+            if u_created or not usr.password:
+                usr.email = u['email']
+                usr.first_name = u['first_name']
+                usr.password = u['password']
+                usr.is_staff = False
+                usr.is_superuser = False
+                usr.is_active = True
+                usr.save()
+
+        # 3. Seed default cars if table is empty
         if Car.objects.count() == 0:
             cars_data = [
                 {'car_name': 'Renault', 'price': 1800, 'car_desc': 'Comfortable AC ;; Car Seating Capacity : 5 ;; Additional Features: Apple CarPlay', 'image': 'car/images/renault.jpg'},
