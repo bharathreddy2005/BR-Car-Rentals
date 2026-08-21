@@ -1,3 +1,6 @@
+import os
+import shutil
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from MyApp.models import Car
@@ -6,6 +9,18 @@ class Command(BaseCommand):
     help = 'Seeds admin user and initial car catalog if empty'
 
     def handle(self, *args, **options):
+        # Ensure media directory and car images exist
+        media_car_dir = os.path.join(settings.MEDIA_ROOT, 'car', 'images')
+        src_car_dir = os.path.join(settings.BASE_DIR, 'car', 'images')
+        os.makedirs(media_car_dir, exist_ok=True)
+        if os.path.exists(src_car_dir):
+            for file in os.listdir(src_car_dir):
+                dest_file = os.path.join(media_car_dir, file)
+                if not os.path.exists(dest_file):
+                    try:
+                        shutil.copy2(os.path.join(src_car_dir, file), dest_file)
+                    except Exception:
+                        pass
         # 1. Create or update admin user
         admin_user, created = User.objects.get_or_create(username='admin')
         admin_user.password = 'admin123'

@@ -47,9 +47,10 @@
 
             <div class="card h-100 shadow">
 
-                <img src="/media/{{ i.image }}"
+                <img src="{% if i.image %}{{ i.image.url }}{% else %}{% static 'wp1.jpg' %}{% endif %}"
                      class="card-img-top"
-                     alt="{{ i.car_name }}">
+                     alt="{{ i.car_name }}"
+                     onerror="this.onerror=null; this.src='/static/wp1.jpg';">
 
                 <div class="card-body">
 

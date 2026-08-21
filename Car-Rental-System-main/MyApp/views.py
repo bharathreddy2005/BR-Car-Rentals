@@ -77,14 +77,22 @@ def signout(request):
     # return HttpResponse('signout')
 
 def vehicles(request):
+    if Car.objects.count() == 0:
+        try:
+            from django.core.management import call_command
+            call_command('setup_initial_data')
+        except Exception as e:
+            print("Auto-seed error in vehicles view:", e)
+
     cars = Car.objects.all()
-    # print(cars)
-    params = {'car':cars}
+    params = {'car': cars}
     return render(request, 'vehicles.html', params)
 
 @login_required
 def bill(request, id):
-    car = get_object_or_404(Car, car_id=id)
+    car = Car.objects.filter(id=id).first() or Car.objects.filter(car_id=id).first()
+    if not car:
+        car = get_object_or_404(Car, id=id)
 
     context = {
         "car": car,
