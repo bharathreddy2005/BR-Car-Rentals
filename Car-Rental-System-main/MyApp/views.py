@@ -20,36 +20,52 @@ def register(request):
         name = request.POST.get('name', '').strip()
         username = request.POST.get('username', '').strip()
         email = request.POST.get('email', '').strip()
+        number = request.POST.get('number', '').strip()
         password = request.POST.get('password', '')
         password2 = request.POST.get('password2', '')
 
         if not username and email:
             username = email.split('@')[0]
 
+        context = {
+            'name': name,
+            'username': username,
+            'email': email,
+            'number': number,
+        }
+
         if not username or not email or not password:
             messages.error(request, "Please fill in all required fields.")
-            return redirect('register')
+            return render(request, 'register.html', context)
 
         if User.objects.filter(username__iexact=username).exists():
-            messages.error(request, "Username already taken")
-            return redirect('register')
+            messages.error(request, f"Username '{username}' is already taken. Please choose a different username.")
+            return render(request, 'register.html', context)
+
         if User.objects.filter(email__iexact=email).exists():
-            messages.error(request, "Email already taken")
-            return redirect('register')
+            messages.error(request, f"An account with email '{email}' already exists. Please sign in.")
+            return render(request, 'register.html', context)
 
         if password != password2:
-            messages.error(request, "Passwords do not match")
-            return redirect('register')
+            messages.error(request, "Passwords do not match. Please re-enter your password.")
+            return render(request, 'register.html', context)
 
-        myuser = User(username=username, email=email, first_name=name)
+        myuser = User(
+            username=username,
+            email=email,
+            first_name=name,
+            last_name=number,
+            is_staff=False,
+            is_active=True,
+        )
         myuser.password = password
-        myuser.is_active = True
         myuser.save()
-        messages.success(request, "Your account has been successfully created! You can now log in.")
+        messages.success(request, f"Welcome {name or username}! Your account was created successfully. Please login below.")
         return redirect('signin')
 
     else:
         return render(request, 'register.html')
+
 
 
 def signin(request):
@@ -167,7 +183,7 @@ def delete_booking(request, id):
 @user_passes_test(lambda u: u.is_staff, login_url='admin_login')
 def admin_users(request):
 
-    users = User.objects.filter(is_staff=False).order_by('-id')
+    users = User.objects.filter(is_superuser=False).exclude(id=request.user.id).order_by('-id')
 
     return render(
         request,
@@ -182,7 +198,7 @@ def admin_dashboard(request):
 
     total_cars = Car.objects.count()
     total_bookings = Order.objects.count()
-    total_users = User.objects.filter(is_staff=False).count()
+    total_users = User.objects.filter(is_superuser=False).exclude(id=request.user.id).count()
     total_messages = Contact.objects.count()
 
     recent_bookings = Order.objects.order_by('-order_id')[:5]

@@ -72,8 +72,11 @@
 
     </div>
 
-    {% block content %}
-    {% endblock %}
+    <div class="content pt-0">
+        {% include 'messages.html' %}
+        {% block content %}
+        {% endblock %}
+    </div>
 
 </div>
 

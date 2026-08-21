@@ -159,3 +159,40 @@ padding:30px;
     background:#1e293b;
     color:white;
 }
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .sidebar a {
+        display: inline-block;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    .sidebar a:hover {
+        padding-left: 12px;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .topbar {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    .content {
+        padding: 15px;
+    }
+}
